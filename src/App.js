@@ -1,10 +1,10 @@
-import { Heading } from "@chakra-ui/react";
-import SideNavigation from "./components/SideNavigation";
+import WithNavigation from "./utils/WithNavigation";
+
 
 function App() {
   return (
-    <SideNavigation />
+    <h1>Hello</h1>
   );
 }
 
-export default App;
+export default WithNavigation(App)
