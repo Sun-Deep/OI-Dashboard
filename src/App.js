@@ -1,10 +1,15 @@
-import WithNavigation from "./utils/WithNavigation";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import MainDashborad from "./screens/MainDashborad";
 
 
 function App() {
   return (
-    <h1>Hello</h1>
+   <Router>
+     <Routes>
+       <Route path='/' element={<MainDashborad />}></Route>
+     </Routes>
+   </Router>
   );
 }
 
-export default WithNavigation(App)
+export default App
