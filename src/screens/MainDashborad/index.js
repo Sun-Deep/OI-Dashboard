@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/layout"
 import BreadCrumb from "../../components/BreadCrumb"
+import OITable from "../../components/OITable"
 import WithNavigation from "../../utils/WithNavigation"
 
 const MainDashbaord = () => {
@@ -18,6 +19,8 @@ const MainDashbaord = () => {
                 }
             ]}
         />
+
+        <OITable />
     </Box>
 }
 

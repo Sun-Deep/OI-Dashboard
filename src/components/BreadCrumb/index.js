@@ -1,6 +1,5 @@
-import Icon from "@chakra-ui/icon"
 import { Box, Flex, Text } from "@chakra-ui/layout"
-import { BiLeftArrow, BiRightArrowAlt } from "react-icons/bi"
+import { BiRightArrowAlt } from "react-icons/bi"
 import { Link } from "react-router-dom"
 
 const BreadCrumb = ({ items }) => {

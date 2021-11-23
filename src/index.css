@@ -17,3 +17,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.rdt_TableHeadRow{
+  background-color: var(--chakra-colors-primary) !important;
+  color: white;
+  font-weight: bold;
+}
