@@ -23,3 +23,50 @@ code {
   color: white;
   font-weight: bold;
 }
+
+
+/* Timeline */
+.rb-container {
+  font-family: "PT Sans", sans-serif;
+  width: 100%;
+  margin: 0 15px;
+  display: block;
+  position: relative;
+}
+
+.rb-container ul.rb {
+  margin: 1em 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.rb-container ul.rb li {
+  list-style: none;
+  margin: auto;
+  min-height: 50px;
+  border-left: 2px solid #50d890;
+  padding: 0 0 20px 30px;
+  position: relative;
+}
+
+.rb-container ul.rb li:last-child {
+  border-left: 0;
+}
+
+.rb-container ul.rb li::before {
+  position: absolute;
+  left: -12px;
+  top: -5px;
+  content: " ";
+  border: 8px solid rgba(255, 255, 255, 1);
+  border-radius: 500%;
+  background: #50d890;
+  height: 25px;
+  width: 25px;
+  transition: all 500ms ease-in-out;
+}
+
+.rb-container ul.rb li:hover::before {
+  border-color: #6b6d70;
+  transition: all 1000ms ease-in-out;
+}
