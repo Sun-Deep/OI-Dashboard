@@ -1,4 +1,5 @@
-import { Box } from "@chakra-ui/layout"
+import { Box, UnorderedList, ListItem, Text } from "@chakra-ui/layout"
+import { useEffect, useState } from "react";
 import DataTable, { createTheme } from 'react-data-table-component';
 
 createTheme('normal', {
@@ -10,37 +11,52 @@ createTheme('normal', {
 
 const OITable = ({ data, columns }) => {
 
+  const [innerData, setInnerData] = useState({})
+
+  const expandedData = () => {
+    data.forEach(item => {
+      let key = item.userId.firstName
+      if(innerData[key]){
+        setInnerData(value => ({
+          ...value,
+          [key]: [...value[key], item]
+        }))
+      }else{
+        setInnerData(value => ({
+          ...value,
+          [key]: [item]
+        }))
+      }
+    })
+  }
+
+  useEffect(() => {
+    expandedData()
+  }, [])
+
+
     const ExpandedComponent = ({ data }) => (
-        <div class="rightbox">
-        <div class="rb-container">
-          <ul class="rb">
-            <li class="rb-item" ng-repeat="itembx">
-              <div class="timestamp">
-                3rd May 2020<br/> 7:00 PM
-              </div>
-              <div class="item-title">Chris Serrano posted a photo on your wall.</div>
-    
-            </li>
-            <li class="rb-item" ng-repeat="itembx">
-              <div class="timestamp">
-                19th May 2020<br/> 3:00 PM
-              </div>
-              <div class="item-title">Mia Redwood commented on your last post.</div>
-    
-            </li>
-    
-            <li class="rb-item" ng-repeat="itembx">
-              <div class="timestamp">
-                17st June 2020<br/> 7:00 PM
-              </div>
-              <div class="item-title">Lucas McAlister just send you a message.</div>
-    
-            </li>
-    
-          </ul>
-    
-        </div>
-      </div>
+        <Box className="rightbox">
+        <Box className="rb-container">
+          <UnorderedList className="rb">
+            {
+              innerData && 
+              innerData[data.userId.firstName].length > 0 &&
+              innerData[data.userId.firstName].map(item => (
+                <ListItem className="rb-item" ng-repeat="itembx">
+                  <Box className="timestamp">
+                    <Text>Time spent {item.timespent} sec</Text>
+                    <Text>{item.browser}</Text>
+                    <Text as='small' color='gray'>Page {item.page}</Text>
+                    <Text color='gray'>{item.datetime}</Text>
+                  </Box>
+                </ListItem>
+              ))
+            }
+            
+          </UnorderedList>
+        </Box>
+      </Box>
     );
 
 
