@@ -3,41 +3,32 @@ import BreadCrumb from "../../components/BreadCrumb"
 import OITable from "../../components/OITable"
 import ScreenHeading from "../../components/ScreenHeading";
 import WithNavigation from "../../utils/WithNavigation"
+import { data } from '../../data'
 
 
 const columns = [
     {
-        name: 'Title',
-        selector: row => row.title,
+        name: 'First Name',
+        selector: row => row.userId.firstName,
     },
     {
-        name: 'Director',
-        selector: row => row.director,
+        name: 'IP',
+        selector: row => row.ip,
     },
     {
-        name: 'Year',
-        selector: row => row.year,
+        name: 'Page',
+        selector: row => row.page,
     },
+    {
+        name: 'Time Spent',
+        selector: row => row.timespent
+    },
+    {
+        name: 'Date Time',
+        selector: row => row.datetime
+    }
 ];
 
-
-const data = [
-    {
-        title: 'Sandeep',
-        director: 'Pokhrel',
-        year: 2021
-    },
-    {
-        title: 'Sandeep',
-        director: 'Pokhrel',
-        year: 2021
-    },
-    {
-        title: 'Sandeep',
-        director: 'Pokhrel',
-        year: 2021
-    }
-]
 
 const MainDashbaord = () => {
     return <VStack
