@@ -30,7 +30,7 @@ const columns = [
 ];
 
 
-const MainDashbaord = () => {
+const Users = () => {
     return <VStack
         spacing={2}
         align='stretch'
@@ -41,12 +41,18 @@ const MainDashbaord = () => {
                 {
                     title: 'Dashboard',
                     link: '/',
+                    active: false
+                },
+                {
+                    title: 'User',
+                    link: '/users',
                     active: true
                 }
             ]}
         />
-        <ScreenHeading title='Dashboard' />
+        <ScreenHeading title='OI Deck Data' />
+        <OITable data={data} columns={columns} />
     </VStack>
 }
 
-export default WithNavigation(MainDashbaord)
+export default WithNavigation(Users)
