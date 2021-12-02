@@ -1,9 +1,10 @@
 import Icon from '@chakra-ui/icon'
-import { Flex, Link, Text, VStack } from '@chakra-ui/layout'
+import { Flex, Text, VStack } from '@chakra-ui/layout'
 import { RiDashboardFill } from 'react-icons/ri'
 import { BiStats } from 'react-icons/bi'
+import { Link } from "react-router-dom";
 
-const CustomMenuItem = ({ props }) => {
+const CustomMenuItem = () => {
   console.log(window.location.pathname)
   return (
     <VStack 
@@ -11,7 +12,7 @@ const CustomMenuItem = ({ props }) => {
       w='100%' 
       align='stretch'
     >
-      <Link href='/'>
+      <Link to='/'>
         <Flex
           bgColor={window.location.pathname === '/' ? '#E8E8E8' : 'transparent'} 
           color={window.location.pathname === '/' ? 'primary' : 'white'}
@@ -26,7 +27,7 @@ const CustomMenuItem = ({ props }) => {
         </Flex>
       </Link>
 
-      <Link href='/users'>
+      <Link to='/users'>
         <Flex
           p={2}
           bgColor={window.location.pathname === '/users' ? '#E8E8E8' : 'transparent'} 
