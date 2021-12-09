@@ -20,7 +20,7 @@ const columns = [
                         textDecoration: 'underline'
                     }}
                 >
-                    <Link to={`/user?${row.userId.firstName}`}>
+                    <Link to={`/user?user_name=${row.userId.firstName}`}>
                         {row.userId.firstName}
                     </Link>
                 </Box>
@@ -51,16 +51,12 @@ const columns = [
 const Users = () => {
     const [listUsers, setListUsers] = useState([])
 
-const onlyUnique = (value, index, self) => {
-    // console.log(value, index, self)
-    return self[index].userId.firstName !== value
-}
+    useEffect(() => {
+        let list = JSON.parse(JSON.stringify(data))
+        const unique = [...new Map(list.map(li => [li.userId.firstName, li])).values()]
+        setListUsers(unique)
+    }, [])
 
-useEffect(() => {
-    let list = JSON.parse(JSON.stringify(data))
-    const unique = [...new Map(list.map(li => [li.userId.firstName, li])).values()]
-    setListUsers(unique)
-}, [])
     return <VStack
         spacing={2}
         align='stretch'

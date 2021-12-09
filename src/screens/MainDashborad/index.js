@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/layout"
+import { Flex, Heading, Text, VStack } from "@chakra-ui/layout"
 import { ResponsivePie } from "@nivo/pie"
 import { ResponsiveBar } from '@nivo/bar'
 import { ResponsiveLine } from '@nivo/line'
@@ -337,9 +337,6 @@ const MainDashbaord = () => {
                 </VStack>
          </OICard>
         </VStack>
-
-        
-
       </Flex>
     </VStack>
 }
