@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/layout"
+import { Box, VStack } from "@chakra-ui/layout"
 
 import BreadCrumb from "../../components/BreadCrumb"
 import OITable from "../../components/OITable"
@@ -6,12 +6,26 @@ import ScreenHeading from "../../components/ScreenHeading";
 import WithNavigation from "../../utils/WithNavigation"
 import { data } from '../../data'
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const columns = [
     {
         name: 'First Name',
         selector: row => row.userId.firstName,
+        cell: row => {
+            return (
+                <Box
+                    _hover={{
+                        textDecoration: 'underline'
+                    }}
+                >
+                    <Link to={`/user?${row.userId.firstName}`}>
+                        {row.userId.firstName}
+                    </Link>
+                </Box>
+            )
+        }
     },
     {
         name: 'IP',
