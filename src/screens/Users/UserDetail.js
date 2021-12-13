@@ -12,6 +12,7 @@ import { IoMdClock, IoMdDocument } from 'react-icons/io'
 import Icon from "@chakra-ui/icon";
 import { data as line } from "../../mockup/line"
 import OITable from "../../components/OITable";
+import { useQuery } from "../../hooks/useQuery";
 
 
 

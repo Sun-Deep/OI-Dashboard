@@ -5,7 +5,7 @@ import { BiStats } from 'react-icons/bi'
 import { Link } from "react-router-dom";
 
 const CustomMenuItem = () => {
-  console.log(window.location.pathname)
+
   return (
     <VStack 
       fontSize='.9em' 
