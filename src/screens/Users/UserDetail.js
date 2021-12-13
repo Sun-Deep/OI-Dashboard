@@ -10,7 +10,6 @@ import OICard from "../../components/OICard";
 import { ResponsiveLine } from '@nivo/line'
 import { IoMdClock, IoMdDocument } from 'react-icons/io'
 import Icon from "@chakra-ui/icon";
-import { data as line } from "../../mockup/line"
 import OITable from "../../components/OITable";
 import { useQuery } from "../../hooks/useQuery";
 
@@ -59,6 +58,9 @@ const Users = () => {
     const [IP, setIP] = useState([])
     const [selectedIP, setSelectedIP] = useState('')
     const [lineData, setLineData] = useState([])
+    // const [totalView, setTotalView] = useState(0)
+    const [totalTimeSpent, setTotalTimeSpent] = useState(0)
+
 
     let query = useQuery()
 
@@ -84,19 +86,31 @@ const Users = () => {
         }
     }, [listUsers, selectedIP])
 
+    useEffect(() => {
+       if(userSelectedIP.length > 0){
+        //    let viewCount = 0
+           let timeSpent = 0
+            for(let i = 0; i < userSelectedIP.length; i++){
+                // viewCount += userSelectedIP[i]['page']
+                timeSpent += userSelectedIP[i]['timespent']
+            }
+            // setTotalView(viewCount)
+            setTotalTimeSpent(timeSpent.toFixed(2))
+       }
+    }, [userSelectedIP])
+
 
     useEffect(() => {
-        if(userSelectedIP.length > 0 && selectedIP !== ''){
+        if(listUsers.length > 0 && selectedIP !== ''){
             let tempData = []
-            for(let i = 0; i < userSelectedIP.length; i++){
-                if(userSelectedIP[i]['ip'] === selectedIP){
+            for(let i = 0; i < listUsers.length; i++){
+                if(listUsers[i]['ip'] === selectedIP){
                     tempData.push({
                         x: `${listUsers[i]['page']}`,
                         y: listUsers[i]['timespent']
                     })
                 }
             }
-            console.log(tempData)
             setLineData([
                 {
                     id: 'Time Spent',
@@ -107,7 +121,6 @@ const Users = () => {
         }
     }, [userSelectedIP, selectedIP])
 
-console.log(lineData)    
     return <VStack
         spacing={2}
         align='stretch'
@@ -201,7 +214,7 @@ console.log(lineData)
             spacing={2}
             alignSelf='center'
         >
-            <OICard 
+            {/* <OICard 
             d='flex' 
             justifyContent='center' 
             alignItems='center'
@@ -222,10 +235,10 @@ console.log(lineData)
                 
             </Flex>
             <VStack>
-                    <Heading>1234</Heading>
+                    <Heading>{totalView}</Heading>
                     <Text color='gray'>Total view</Text>
                 </VStack>
-         </OICard>
+         </OICard> */}
 
          <OICard 
             d='flex' 
@@ -248,7 +261,7 @@ console.log(lineData)
                 
             </Flex>
             <VStack>
-                    <Heading>1234</Heading>
+                    <Heading>{totalTimeSpent}</Heading>
                     <Text color='gray'>Total time spent</Text>
                 </VStack>
          </OICard>
