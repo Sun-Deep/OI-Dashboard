@@ -69,6 +69,10 @@ const Users = () => {
             }
         }))].filter(ip => ip !== undefined)
         setIP(ip)
+
+        setListUsers(() => {
+            return data.filter(d => d['userId']['firstName'] === userName)
+         })
     }, [])
     
     return <VStack
@@ -231,7 +235,7 @@ const Users = () => {
          </OICard>
         </VStack>
       </Flex>
-      <OITable data={data} columns={columns} />
+      <OITable data={listUsers} columns={columns} />
     </VStack>
 }
 
