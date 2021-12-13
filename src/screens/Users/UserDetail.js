@@ -14,8 +14,6 @@ import { data as line } from "../../mockup/line"
 import OITable from "../../components/OITable";
 import { useQuery } from "../../hooks/useQuery";
 
-
-
 const columns = [
     {
         name: 'First Name',
@@ -57,11 +55,20 @@ const columns = [
 
 const Users = () => {
     const [listUsers, setListUsers] = useState([])
+    const [IP, setIP] = useState([])
+    const [selectedIP, setSelectedIP] = useState('')
+
+    let query = useQuery()
 
     useEffect(() => {
-        let list = JSON.parse(JSON.stringify(data))
-        const unique = [...new Map(list.map(li => [li.userId.firstName, li])).values()]
-        setListUsers(unique)
+        let userName = query.get('user_name')
+        let ip = [...new Set(data.map(d => {
+            if(d['userId']['firstName'] === userName){
+                console.log(d)
+                return d['ip']
+            }
+        }))].filter(ip => ip !== undefined)
+        setIP(ip)
     }, [])
     
     return <VStack
@@ -90,9 +97,16 @@ const Users = () => {
         p={2}
         flexWrap='wrap'
        >
-           <Text>IP 1</Text>
-           <Text>IP 2</Text>
-           <Text>IP 3</Text>
+           {
+               IP.map(ip => <Text 
+                    key={ip}
+                    cursor='pointer'
+                    onClick={() => setSelectedIP(ip)}
+                    color={selectedIP === ip ? 'primary' : 'black'}
+                >
+                    {ip}
+                </Text>)
+           }
        </Flex>
     
        <Flex
