@@ -55,6 +55,7 @@ const columns = [
 
 const Users = () => {
     const [listUsers, setListUsers] = useState([])
+    const [userSelectedIP, setUserSelectedIP] = useState([])
     const [IP, setIP] = useState([])
     const [selectedIP, setSelectedIP] = useState('')
     const [lineData, setLineData] = useState([])
@@ -77,9 +78,18 @@ const Users = () => {
 
     useEffect(() => {
         if(listUsers.length > 0 && selectedIP !== ''){
+            setUserSelectedIP(() => {
+                return listUsers.filter(d => d['ip'] === selectedIP)
+            })
+        }
+    }, [listUsers, selectedIP])
+
+
+    useEffect(() => {
+        if(userSelectedIP.length > 0 && selectedIP !== ''){
             let tempData = []
-            for(let i = 0; i < listUsers.length; i++){
-                if(listUsers[i]['ip'] === selectedIP){
+            for(let i = 0; i < userSelectedIP.length; i++){
+                if(userSelectedIP[i]['ip'] === selectedIP){
                     tempData.push({
                         x: `${listUsers[i]['page']}`,
                         y: listUsers[i]['timespent']
@@ -95,7 +105,7 @@ const Users = () => {
                 }
             ])
         }
-    }, [listUsers, selectedIP])
+    }, [userSelectedIP, selectedIP])
 
 console.log(lineData)    
     return <VStack
@@ -244,7 +254,7 @@ console.log(lineData)
          </OICard>
         </VStack>
       </Flex>
-      <OITable data={listUsers} columns={columns} />
+      <OITable data={userSelectedIP} columns={columns} />
     </VStack>
 }
 
